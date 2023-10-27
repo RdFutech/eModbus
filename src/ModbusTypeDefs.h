@@ -39,6 +39,7 @@ enum FunctionCode : uint8_t {
   USER_DEFINED_46         = 0x46,
   USER_DEFINED_47         = 0x47,
   USER_DEFINED_48         = 0x48,
+  USER_DEFINED_49         = 0x49, //KG added
   USER_DEFINED_64         = 0x64,
   USER_DEFINED_65         = 0x65,
   USER_DEFINED_66         = 0x66,

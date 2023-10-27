@@ -30,7 +30,7 @@ FCType FCT::table[] = {
 // 0x.0      0x.1       0x.2       0x.3       0x.4       0x.5       0x.6       0x.7
   FCILLEGAL, FCUSER,    FCUSER,    FCUSER,    FCUSER,    FCUSER,    FCUSER,    FCUSER,     // 0x4.
 // 0x.8      0x.9       0x.A       0x.B       0x.C       0x.D       0x.E       0x.F
-  FCUSER,    FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL,  // 0x4.
+  FCUSER,    FCUSER,    FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL,  // 0x4. //KG added
 // 0x.0      0x.1       0x.2       0x.3       0x.4       0x.5       0x.6       0x.7
   FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL, FCILLEGAL,  // 0x5.
 // 0x.8      0x.9       0x.A       0x.B       0x.C       0x.D       0x.E       0x.F

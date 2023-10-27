@@ -438,7 +438,7 @@ uint16_t ModbusMessage::get(uint16_t index, vector<uint8_t>& v, uint8_t count) c
 // Data validation methods for the different factory calls
 // 0. serverID and function code - used by all of the below
 Error ModbusMessage::checkServerFC(uint8_t serverID, uint8_t functionCode) {
-  if (serverID == 0)      return INVALID_SERVER;   // Broadcast - not supported here
+  //if (serverID == 0)      return INVALID_SERVER;   // Broadcast - not supported here //KG added
   if (serverID > 247)     return INVALID_SERVER;   // Reserved server addresses
   if (FCT::getType(functionCode) == FCILLEGAL)  return ILLEGAL_FUNCTION; // FC 0 does not exist
   return SUCCESS;
