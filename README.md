@@ -24,3 +24,5 @@ This has been developed by enthusiasts. While we do our utmost best to make robu
 We do welcome any ideas, suggestions, bug reports or questions. Please use the "[Issues](https://github.com/eModbus/eModbus/issues)" tab to report bugs and request new features and visit the "[Discussions](https://github.com/eModbus/eModbus/discussions)" tab for all else.
 
 Have fun!
+
+added by KG
