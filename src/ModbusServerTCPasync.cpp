@@ -34,7 +34,7 @@ void ModbusServerTCPasync::mb_client::onData(uint8_t* data, size_t len) {
   lastActiveTime = millis();
   LOG_D("data len %d\n", len);
 
-  Error error = SUCCESS;
+  error = SUCCESS;
   size_t i = 0;
   while (i < len) {
     // 0. start
