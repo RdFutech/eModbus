@@ -25,7 +25,7 @@ ModbusClientTCPasync::ModbusClientTCPasync(IPAddress address, uint16_t port, uin
       MTA_client.onConnect([](void* i, AsyncClient* c) { (static_cast<ModbusClientTCPasync*>(i))->onConnected(); }, this);
       MTA_client.onDisconnect([](void* i, AsyncClient* c) { (static_cast<ModbusClientTCPasync*>(i))->onDisconnected(); }, this);
       MTA_client.onError([](void* i, AsyncClient* c, int8_t error) { (static_cast<ModbusClientTCPasync*>(i))->onACError(c, error); }, this);
-      // MTA_client.onTimeout([](void* i, AsyncClient* c, uint32_t time) { (static_cast<ModbusClientTCPasync*>(i))->onTimeout(time); }, this);
+      MTA_client.onTimeout([](void* i, AsyncClient* c, uint32_t time) { (static_cast<ModbusClientTCPasync*>(i))->onTimeout(time); }, this);
       // MTA_client.onAck([](void* i, AsyncClient* c, size_t len, uint32_t time) { (static_cast<ModbusClientTCPasync*>(i))->onAck(len, time); }, this);
       MTA_client.onData([](void* i, AsyncClient* c, void* data, size_t len) { (static_cast<ModbusClientTCPasync*>(i))->onPacket(static_cast<uint8_t*>(data), len); }, this);
       MTA_client.onPoll([](void* i, AsyncClient* c) { (static_cast<ModbusClientTCPasync*>(i))->onPoll(); }, this);
@@ -201,15 +201,17 @@ void ModbusClientTCPasync::onACError(AsyncClient* c, int8_t error) {
   LOG_W("TCP error: %s\n", c->errorToString(error));
 }
 
-/*
-void onTimeout(uint32_t time) {
-  // timeOut is handled by onPoll or onDisconnect
-}
 
+void ModbusClientTCPasync::onTimeout(uint32_t time) {
+  // timeOut is handled by onPoll or onDisconnect
+  LOG_D("ModbusClientTCPasync::onTimeout %u\n", time);
+  //MTA_client.close(true);
+}
+/*
 void onAck(size_t len, uint32_t time) {
   // assuming we don't need this
-}
-*/
+}*/
+
 void ModbusClientTCPasync::onPacket(uint8_t* data, size_t length) {
   LOG_D("packet received (len:%d)\n", length);
   // reset idle timeout

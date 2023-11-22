@@ -124,7 +124,7 @@ protected:
   void onConnected();
   void onDisconnected();
   void onACError(AsyncClient* c, int8_t error);
-  // void onTimeout(uint32_t time);
+  void onTimeout(uint32_t time);
   // void onAck(size_t len, uint32_t time);
   void onPacket(uint8_t* data, size_t length);
   void onPoll();
