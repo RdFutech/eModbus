@@ -205,7 +205,7 @@ void ModbusClientTCPasync::onACError(AsyncClient* c, int8_t error) {
 void ModbusClientTCPasync::onTimeout(uint32_t time) {
   // timeOut is handled by onPoll or onDisconnect
   LOG_D("ModbusClientTCPasync::onTimeout %u\n", time);
-  //MTA_client.close(true);
+  disconnect(true);
 }
 /*
 void onAck(size_t len, uint32_t time) {
@@ -342,7 +342,7 @@ void ModbusClientTCPasync::onPoll() {
 
   // if nothing happened during idle timeout, gracefully close connection
   if (millis() - MTA_lastActivity > MTA_idleTimeout) {
-    disconnect();
+    disconnect(true); //KG added force
   }
 }
 
