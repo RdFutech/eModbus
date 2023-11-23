@@ -5,13 +5,19 @@
 #include "Logging.h"
 #include <cinttypes>
 
+#ifndef DEFAULT_LOGGER_EMODBUS
+#define DEFAULT_LOGGER_EMODBUS Serial
+#else
+#include "debug_streamspy.h"
+#endif
+
 int MBUlogLvl = LOG_LEVEL;
 #if IS_LINUX
 #define PrintOut printf
 
 void logHexDump(const char *letter, const char *label, const uint8_t *data, const size_t length) {
 #else
-Print *LOGDEVICE = &Serial;
+Print *LOGDEVICE = &DEFAULT_LOGGER_EMODBUS;
 #define PrintOut output->printf
 
 void logHexDump(Print *output, const char *letter, const char *label, const uint8_t *data, const size_t length) {
