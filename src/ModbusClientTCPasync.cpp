@@ -139,6 +139,7 @@ bool ModbusClientTCPasync::addToQueue(int32_t token, ModbusMessage request, bool
     LOCK_GUARD(lock1, qLock);
     if (txQueue.size() + rxQueue.size() < MTA_qLimit) {
       HEXDUMP_V("Enqueue", request.data(), request.size());
+      vTaskDelay(20); // KG added for auto reconnect
       RequestEntry *re = new RequestEntry(token, request, syncReq);
       if (!re) return false;  //TODO: proper error returning in case allocation fails
       // inject proper transactionID
