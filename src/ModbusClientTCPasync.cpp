@@ -205,7 +205,7 @@ void ModbusClientTCPasync::onACError(AsyncClient* c, int8_t error) {
 void ModbusClientTCPasync::onTimeout(uint32_t time) {
   // timeOut is handled by onPoll or onDisconnect
   LOG_D("ModbusClientTCPasync::onTimeout %u\n", time);
-  disconnect(true);
+  //disconnect(true);
 }
 /*
 void onAck(size_t len, uint32_t time) {
