@@ -43,23 +43,19 @@
     }
   ],
   "export": {
-    "include":
-    [
-        "src/*.cpp",
-        "src/*.h",
-        "examples/*",
-        "Test/*",
-        ".gitignore",
-        "README.md",
-        "license.md",
-        "keywords.txt",
-        "library.properties",
-        "library.json"
+    "include": [
+      "src/*.cpp",
+      "src/*.h",
+      "examples/*",
+      "Test/*",
+      ".gitignore",
+      "README.md",
+      "license.md",
+      "keywords.txt",
+      "library.properties",
+      "library.json"
     ]
   },
   "frameworks": "arduino",
-  "platforms": [
-    "espressif32",
-    "espressif8266"
-  ]
+  "platforms": ["espressif32", "espressif8266"]
 }
