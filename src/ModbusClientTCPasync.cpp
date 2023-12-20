@@ -18,7 +18,8 @@ ModbusClientTCPasync::ModbusClientTCPasync(IPAddress address, uint16_t port, uin
                                                                                                     MTA_lastActivity(0),
                                                                                                     MTA_state(DISCONNECTED),
                                                                                                     MTA_host(address),
-                                                                                                    MTA_port(port)
+                                                                                                    MTA_port(port),
+                                                                                                    new_msg(false)
 {
   // attach all handlers on async tcp events
   MTA_client.onConnect([](void *i, AsyncClient *c)
@@ -127,6 +128,7 @@ Error ModbusClientTCPasync::addRequestM(ModbusMessage msg, uint32_t token)
   // Add it to the queue, if valid
   if (msg)
   {
+    new_msg = true;
     // Queue add successful?
     if (!addToQueue(token, msg))
     {
@@ -192,17 +194,12 @@ bool ModbusClientTCPasync::addToQueue(int32_t token, ModbusMessage request, bool
       else
       {
         txQueue.push_back(re);
-        /* if (MTA_state == DISCONNECTED) {
+        if (MTA_state == DISCONNECTED && new_msg) {
           log_w("connect()");
           connect();
-        } */
+        }
       }
       return true;
-    }
-    if (MTA_state == DISCONNECTED) //KG do this here and wait for queue to be full to descide the state is disconnected
-    {
-      log_w("connect()");
-      connect();
     }
     LOG_E("queue is full\n");
   }
@@ -223,7 +220,7 @@ void ModbusClientTCPasync::onDisconnected()
   LOG_D("disconnected\n");
   LOCK_GUARD(lock1, sLock);
   MTA_state = DISCONNECTED;
-
+  new_msg = false;
   // empty queue on disconnect, calling errorcode on every waiting request
   LOCK_GUARD(lock2, qLock);
   while (!txQueue.empty())

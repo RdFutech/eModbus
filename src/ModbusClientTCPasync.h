@@ -150,6 +150,7 @@ protected:
   } MTA_state;                      // TCP connection state
   IPAddress MTA_host;
   uint16_t MTA_port;
+  bool new_msg; //KG extra safety for LOCK_GUARD
 };
 
 #endif
